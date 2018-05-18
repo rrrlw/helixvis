@@ -24,7 +24,7 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
 
   # make sure colors are valid
   NUM.COLORS <- 4 # hydrophobic, hydrophilic, basic, acidic
-  if (sum(col %in% colors()) != 4) {
+  if (sum(col %in% grDevices::colors()) != 4) {
     stop("ERROR: parameter `col` has invalid, missing, or too many colors.")
   }
 
@@ -49,6 +49,9 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                        residue_col(curr.resid)
                      })
   circle.data$fill.col <- col[fill.col]
+
+  # hack to make CRAN happy; create visible bindings for variables
+  x<-NULL; xstart<-NULL; xend<-NULL; y<-NULL; ystart<-NULL; yend<-NULL
 
   # setup df for segments connecting circles
   segment.data <- data.frame(xstart = x.center[1:(num.resid - 1)],
