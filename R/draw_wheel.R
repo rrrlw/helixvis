@@ -11,6 +11,7 @@
 #'   from N-terminus to C-terminus
 #' @param col colors for each amino acid type in the following order:
 #'   nonpolar residues, polar residues, basic residues, acidic residues
+#' @import ggplot2
 #' @export
 draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
   # check length of sequence
@@ -59,7 +60,7 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
   ggplot() +
     geom_segment(data = segment.data,
                  aes(x = xstart, y = ystart, xend = xend, yend = yend)) +
-    geom_circle(data = circle.data,
+    ggforce::geom_circle(data = circle.data,
                 aes(x0 = x, y0 = y, r = 0.145, fill = I(fill.col))) +
     theme(line = element_blank(),
           rect = element_blank(),
