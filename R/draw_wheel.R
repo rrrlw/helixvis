@@ -78,10 +78,10 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                                    })
 
   # setup plot
-  old.mar <- par()$mar            # save old settings for reversion
-  on.exit(par(mar = old.mar))     # go back to old settings
-  par(mar = c(0, 0, 0, 0))        # remove margins for more drawing space
-  plot.new()                      # blank canvas for plotrix drawing
+  old.mar <- graphics::par()$mar            # save old settings for reversion
+  on.exit(graphics::par(mar = old.mar))     # go back to old settings
+  graphics::par(mar = c(0, 0, 0, 0))        # remove margins for more drawing space
+  graphics::plot.new()                      # blank canvas for plotrix drawing
 
   # draw helical wheel segments using plotrix
   temp <- vapply(X = 1:(num.resid - 1), FUN.VALUE = logical(1),
