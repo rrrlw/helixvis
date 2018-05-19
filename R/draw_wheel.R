@@ -13,6 +13,9 @@
 #'   nonpolar residues, polar residues, basic residues, acidic residues
 #' @import ggplot2
 #' @export
+#' @examples
+#' draw_wheel("GIGAVLKVLTTGLPALIS")
+#' draw_wheel("QQRKRKIWSILAPLGTTL")
 draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
   # check length of sequence
   MIN.NUM <- 2
