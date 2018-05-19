@@ -20,3 +20,7 @@ Sequences between 2 and 18 (inclusive) characters can be visualized.
 The residue in the upper half of the wheel lying at the horizontal
 center representing the amino acid at the N-terminus (first in `sequence`).
 }
+\examples{
+draw_wheel("GIGAVLKVLTTGLPALIS")
+draw_wheel("QQRKRKIWSILAPLGTTL")
+}
