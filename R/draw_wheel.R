@@ -11,7 +11,6 @@
 #'   from N-terminus to C-terminus
 #' @param col colors for each amino acid type in the following order:
 #'   nonpolar residues, polar residues, basic residues, acidic residues
-#' @import ggplot2
 #' @export
 #' @examples
 #' draw_wheel("GIGAVLKVLTTGLPALIS")
@@ -42,8 +41,13 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                 0.1476, 0.7987, -0.4250, -0.6511, 0.6511,
                 0.4250, -0.7987, -0.1476)
 
+  # previous vals were for ggplot2 and ggforce implementation
+  # scale and shift for plotrix implementation
+  x.center <- x.center / 2 + 0.5
+  y.center <- y.center / 2 + 0.5
+
   # setup df for geom_circle
-  CIRCLE.RADIUS <- 0.145
+  CIRCLE.RADIUS <- 0.0725
   circle.data <- data.frame(x = x.center[1:num.resid],
                             y = y.center[1:num.resid])
   fill.col <- vapply(X = strsplit(sequence, "")[[1]],
@@ -53,27 +57,62 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                      })
   circle.data$fill.col <- col[fill.col]
 
-  # hack to make CRAN happy; create visible bindings for variables
-  x<-NULL; xstart<-NULL; xend<-NULL; y<-NULL; ystart<-NULL; yend<-NULL
-
   # setup df for segments connecting circles
   segment.data <- data.frame(xstart = x.center[1:(num.resid - 1)],
                              ystart = y.center[1:(num.resid - 1)],
                              xend = x.center[2:num.resid],
                              yend = y.center[2:num.resid])
+  segment.data$slope <- with(segment.data,
+                             (yend - ystart) / (xend - xstart))
+  segment.data$intercept <- vapply(X = 1:nrow(segment.data),
+                                   FUN.VALUE = numeric(1),
+                                   FUN = function(i) {
+                                     # vertical line
+                                     if (is.infinite(segment.data$slope[i])) {
+                                       return(segment.data$xstart[i])
+                                     }
 
-  # draw helical wheel using ggplot2
-  ggplot() +
-    geom_segment(data = segment.data,
-                 aes(x = xstart, y = ystart, xend = xend, yend = yend)) +
-    ggforce::geom_circle(data = circle.data,
-                aes(x0 = x, y0 = y, r = 0.145, fill = I(fill.col))) +
-    theme(line = element_blank(),
-          rect = element_blank(),
-          text = element_blank(),
-          title = element_blank(),
-          plot.margin = unit(c(0, 0, 0, 0), "cm")) +
-    guides(fill = FALSE) +
-    xlim(-1, 1) +
-    ylim(-1, 1)
+                                     # normal lines
+                                     return(with(segment.data,
+                                                 ystart[i] - xstart[i] * slope[i]))
+                                   })
+
+  # setup plot
+  old.mar <- par()$mar            # save old settings for reversion
+  on.exit(par(mar = old.mar))     # go back to old settings
+  par(mar = c(0, 0, 0, 0))        # remove margins for more drawing space
+  plot.new()                      # blank canvas for plotrix drawing
+
+  # draw helical wheel segments using plotrix
+  temp <- vapply(X = 1:(num.resid - 1), FUN.VALUE = logical(1),
+                 FUN = function(i) {
+                   # vertical line
+                   if (is.infinite(segment.data$slope[i])) {
+                     with(segment.data,
+                          plotrix::ablineclip(v = intercept[i],
+                                              y1 = ystart[i],
+                                              y2 = yend[i]))
+                   # normal line
+                   } else {
+                     with(segment.data,
+                          plotrix::ablineclip(a = intercept[i],
+                                              b = slope[i],
+                                              x1 = xstart[i],
+                                              x2 = xend[i]))
+                   }
+
+                   # all went okay
+                   return(TRUE)
+                 })
+
+  # draw helical wheel circles using plotrix
+  temp <- vapply(X = 1:num.resid, FUN.VALUE = logical(1),
+                 FUN = function(i) {
+                   plotrix::draw.circle(x = circle.data$x[i],
+                                        y = circle.data$y[i],
+                                        radius = CIRCLE.RADIUS,
+                                        col = circle.data$fill.col[i],
+                                        border = "black")
+                   return(TRUE)
+                 })
 }
