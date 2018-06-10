@@ -1,8 +1,8 @@
-helixvis: An R package to visualize alpha-helical peptide sequences
+# helixvis: An R package to visualize alpha-helical peptide sequences
 
 [![Build Status](https://travis-ci.org/rrrlw/helixvis.svg?branch=master)](https://travis-ci.org/rrrlw/helixvis)
 
-# Purpose
+## Purpose
 
 helixvis can be used to create pretty, publication-quality visualizations of alpha-helical peptide sequences.
 Specifically, this package allows the user to programmatically generate helical wheels to provide a bird's eye, top-down view of a short, alpha-helical peptide.
@@ -16,7 +16,7 @@ Programmatic generation of helical wheels in open source R provides multiple ben
 The current vision is for helixvis to implement generation of Wenxiang diagrams and helical nets, along with increased customization of the visualizations themselves.
 Please report any bugs, suggestions, etc. on the [issue page](https://github.com/rrrlw/helixvis/issues) of the [helixvis GitHub repository](https://github.com/rrrlw/helixvis).
 
-# Installation
+## Installation
 
 helixvis is available on [CRAN](https://CRAN.R-project.org/package=helixvis).
 The following R code can be used to install and load helixvis.
@@ -29,7 +29,7 @@ install.packages("helixvis")
 library("helixvis")
 ```
 
-# Usage
+## Usage
 
 The following code demonstrates the use of helixvis to create a helical wheel for the first 18 residues of melittin, a potent antimicrobial peptide found in bee venom.
 
