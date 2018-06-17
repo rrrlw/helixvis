@@ -16,18 +16,22 @@ Programmatic generation of helical wheels in open source R provides multiple ben
 * reproducibility and collaboration
 
 The current vision is for helixvis to implement generation of Wenxiang diagrams and helical nets, along with increased customization of the visualizations themselves.
-Please report any bugs, suggestions, etc. on the [issue page](https://github.com/rrrlw/helixvis/issues) of the [helixvis GitHub repository](https://github.com/rrrlw/helixvis).
+Please report any bugs, suggestions, etc. on the [issues page](https://github.com/rrrlw/helixvis/issues) of the [helixvis GitHub repository](https://github.com/rrrlw/helixvis).
 
 ## Installation
 
 helixvis is available on [CRAN](https://CRAN.R-project.org/package=helixvis).
+Alternatively, the most recent version of helixvis is available on its [GitHub repository](https://github.com/rrrlw/helixvis).
 The following R code can be used to install and load helixvis.
 
 ```r
-# install from CRAN
+# install from CRAN and load
 install.packages("helixvis")
 
-# load library for use
+# install most recent version from GitHub repository
+devtools::install_github("rrrlw/helixvis")
+
+# load for use
 library("helixvis")
 ```
 
