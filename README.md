@@ -1,6 +1,7 @@
 # helixvis: An R package to visualize alpha-helical peptide sequences
 
 [![Build Status](https://travis-ci.org/rrrlw/helixvis.svg?branch=master)](https://travis-ci.org/rrrlw/helixvis)
+[![](http://www.r-pkg.org/badges/version/helixvis)](https://CRAN.R-project.org/package=helixvis)
 
 ## Purpose
 
