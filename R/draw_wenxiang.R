@@ -4,8 +4,8 @@
 #' This function visualizes alpha-helical peptides as
 #' Wenxiang diagrams.
 #' Sequences between 2 and 18 (inclusive) characters can be visualized.
-#' The residue in the upper half of the wheel lying at the horizontal
-#' center representing the amino acid at the N-terminus (first in `sequence`).
+#' The residue closest to the center represents the amino acid at the
+#' N-terminus (first in `sequence`).
 #'
 #' @param sequence  character vector containing amino acid sequence
 #'   from N-terminus to C-terminus
