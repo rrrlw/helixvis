@@ -1,6 +1,7 @@
 .DS_Store
 *.Rproj
 .Rproj.user
+.Rhistory
 
 # used to come up with coordinates for circle locations in Wenxiang diagrams
 R/procedure-coords.R
