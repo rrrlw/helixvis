@@ -17,10 +17,8 @@
 #' draw_wenxiang("QQRKRKIWSILAPLGTTL")
 draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
   # check length of sequence
-  MIN.NUM <- 2
-  MAX.NUM <- 18
-  if (!(nchar(sequence) %in% MIN.NUM:MAX.NUM)) {
-    stop("ERROR: sequence must have between 2 and 18 (inclusive) characters.")
+  if (nchar(sequence) != 18) {
+    stop("ERROR: sequence must have exactly 18 characters.")
   }
   num.resid <- nchar(sequence)
 
