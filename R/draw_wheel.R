@@ -26,7 +26,7 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
 
   # make sure colors are valid
   NUM.COLORS <- 4 # hydrophobic, hydrophilic, basic, acidic
-  if (sum(col %in% grDevices::colors()) != 4) {
+  if (sum(col %in% grDevices::colors()) != NUM.COLORS) {
     stop("ERROR: parameter `col` has invalid, missing, or too many colors.")
   }
 
