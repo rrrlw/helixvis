@@ -58,6 +58,9 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                              xend = x.center[2:num.resid],
                              yend = y.center[2:num.resid])
 
+  # use to avoid WARNINGs by R CMD check (variables not found)
+  xstart <- NULL; ystart <- NULL; xend <- NULL; yend <- NULL; x <- NULL; y <- NULL
+
   # draw with ggplot2
   ggplot2::ggplot() +
     ggplot2::geom_segment(data = segment.data,
