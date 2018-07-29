@@ -41,13 +41,7 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                 0.1476, 0.7987, -0.4250, -0.6511, 0.6511,
                 0.4250, -0.7987, -0.1476)
 
-  # previous vals were for ggplot2 and ggforce implementation
-  # scale and shift for plotrix implementation
-  x.center <- x.center / 2 + 0.5
-  y.center <- y.center / 2 + 0.5
-
-  # setup df for geom_circle
-  CIRCLE.RADIUS <- 0.0725
+  CIRCLE.RADIUS <- 0.143
   circle.data <- data.frame(x = x.center[1:num.resid],
                             y = y.center[1:num.resid])
   fill.col <- vapply(X = strsplit(sequence, "")[[1]],
@@ -57,62 +51,26 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                      })
   circle.data$fill.col <- col[fill.col]
 
-  # setup df for segments connecting circles
   segment.data <- data.frame(xstart = x.center[1:(num.resid - 1)],
                              ystart = y.center[1:(num.resid - 1)],
                              xend = x.center[2:num.resid],
                              yend = y.center[2:num.resid])
-  segment.data$slope <- with(segment.data,
-                             (yend - ystart) / (xend - xstart))
-  segment.data$intercept <- vapply(X = 1:nrow(segment.data),
-                                   FUN.VALUE = numeric(1),
-                                   FUN = function(i) {
-                                     # vertical line
-                                     if (is.infinite(segment.data$slope[i])) {
-                                       return(segment.data$xstart[i])
-                                     }
 
-                                     # normal lines
-                                     return(with(segment.data,
-                                                 ystart[i] - xstart[i] * slope[i]))
-                                   })
-
-  # setup plot
-  old.mar <- graphics::par()$mar            # save old settings for reversion
-  on.exit(graphics::par(mar = old.mar))     # go back to old settings
-  graphics::par(mar = c(0, 0, 0, 0))        # remove margins for more drawing space
-  graphics::plot.new()                      # blank canvas for plotrix drawing
-
-  # draw helical wheel segments using plotrix
-  temp <- vapply(X = 1:(num.resid - 1), FUN.VALUE = logical(1),
-                 FUN = function(i) {
-                   # vertical line
-                   if (is.infinite(segment.data$slope[i])) {
-                     with(segment.data,
-                          plotrix::ablineclip(v = intercept[i],
-                                              y1 = ystart[i],
-                                              y2 = yend[i]))
-                   # normal line
-                   } else {
-                     with(segment.data,
-                          plotrix::ablineclip(a = intercept[i],
-                                              b = slope[i],
-                                              x1 = xstart[i],
-                                              x2 = xend[i]))
-                   }
-
-                   # all went okay
-                   return(TRUE)
-                 })
-
-  # draw helical wheel circles using plotrix
-  temp <- vapply(X = 1:num.resid, FUN.VALUE = logical(1),
-                 FUN = function(i) {
-                   plotrix::draw.circle(x = circle.data$x[i],
-                                        y = circle.data$y[i],
-                                        radius = CIRCLE.RADIUS,
-                                        col = circle.data$fill.col[i],
-                                        border = "black")
-                   return(TRUE)
-                 })
+  ggplot2::ggplot() +
+    ggplot2::geom_segment(data = segment.data,
+                          ggplot2::aes(x = xstart, y = ystart,
+                                       xend = xend, yend = yend)) +
+    ggforce::geom_circle(data = circle.data,
+                         ggplot2::aes(x0 = x, y0 = y, r = CIRCLE.RADIUS,
+                                      fill = I(fill.col))) +
+    ggplot2::xlim(c(-1, 1)) + ggplot2::ylim(c(-1, 1)) +
+    ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
+                   panel.grid.minor = ggplot2::element_blank(),
+                   panel.background = ggplot2::element_blank(),
+                   panel.border = ggplot2::element_blank(),
+                   axis.title = ggplot2::element_blank(),
+                   axis.text = ggplot2::element_blank(),
+                   axis.ticks = ggplot2::element_blank(),
+                   legend.position = "none")
 }
+
