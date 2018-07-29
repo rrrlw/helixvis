@@ -30,7 +30,7 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
     stop("ERROR: parameter `col` has invalid, missing, or too many colors.")
   }
 
-  # hard-code coordinates for center of 18 circles in helix
+  # hard-code details of 18 circles in helix
   # assume window of [-1, 1] by [-1, 1] (X by Y)
   x.center <- c(0.0000, 0.8371, -0.2907, -0.7361, 0.5464,
                 0.5464, -0.7361, -0.2907, 0.8371, 0.0000,
@@ -40,8 +40,9 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                 -0.6511, -0.4250, 0.7987, 0.1476, -0.8500,
                 0.1476, 0.7987, -0.4250, -0.6511, 0.6511,
                 0.4250, -0.7987, -0.1476)
-
   CIRCLE.RADIUS <- 0.143
+
+  # prepare data  frame with circle information (residues)
   circle.data <- data.frame(x = x.center[1:num.resid],
                             y = y.center[1:num.resid])
   fill.col <- vapply(X = strsplit(sequence, "")[[1]],
@@ -51,11 +52,13 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                      })
   circle.data$fill.col <- col[fill.col]
 
+  # prepare data frame with segment information
   segment.data <- data.frame(xstart = x.center[1:(num.resid - 1)],
                              ystart = y.center[1:(num.resid - 1)],
                              xend = x.center[2:num.resid],
                              yend = y.center[2:num.resid])
 
+  # draw with ggplot2
   ggplot2::ggplot() +
     ggplot2::geom_segment(data = segment.data,
                           ggplot2::aes(x = xstart, y = ystart,
