@@ -72,6 +72,10 @@ draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                      })
   df.resid$fill.col <- col[fill.col]
 
+  # use to avoid WARNINGs by R CMD check (variables not found)
+  x <- NULL; y <- NULL; radius <- NULL
+  start.angle <- NULL; end.angle <- NULL; center.x <- NULL; center.y <- NULL
+
   # draw Wenxiang diagram with ggplot2
   ggplot2::ggplot() +
     ggforce::geom_arc(data = df.spiral,
