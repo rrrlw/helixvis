@@ -8,3 +8,8 @@ addons:
       - libudunits2-dev
 cache: packages
 r: release
+r_github_packages:
+  - r-lib/covr
+
+after_success:
+  - Rscript -e 'covr::codecov()'
