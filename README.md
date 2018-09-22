@@ -5,7 +5,7 @@
 [![CRAN version](http://www.r-pkg.org/badges/version/helixvis)](https://CRAN.R-project.org/package=helixvis)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[![Coverage Status](https://img.shields.io/codecov/c/github/rrrlw/helixvis/master.svg)](https://codecov.io/github/rrrlw/helixvix?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/rrrlw/helixvis/master.svg)](https://codecov.io/github/rrrlw/helixvis?branch=master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/helixvis)](https://CRAN.R-project.org/package=helixvis)
 
 ## Purpose
