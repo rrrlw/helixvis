@@ -51,11 +51,11 @@ library("helixvis")
 draw_wheel("GIGAVLKVLTTGLPALIS")
 
 # save visualization in working directory
-ggsave("MelittinWheel.png")
+ggplot2::ggsave("MelittinWheel.png")
 
 # create wenxiang diagram (18 residue limit)
 draw_wenxiang("GIGAVLKVLTTGLPALIS")
 
 # save visualization in working directory
-ggsave("MelittinWenxiang.png")
+ggplot2::ggsave("MelittinWenxiang.png")
 ```
