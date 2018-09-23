@@ -2,3 +2,4 @@
 
 export(draw_wenxiang)
 export(draw_wheel)
+importFrom(rlang,.data)
