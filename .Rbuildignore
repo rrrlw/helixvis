@@ -10,3 +10,4 @@ appveyor\.yml
 ^.*\.Rproj$
 R/procedure-coords.R
 .Rhistory
+LICENSE
