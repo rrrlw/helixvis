@@ -11,11 +11,15 @@
 #'   from N-terminus to C-terminus
 #' @param col colors for each amino acid type in the following order:
 #'   nonpolar residues, polar residues, basic residues, acidic residues
+#' @param labels logical value; if TRUE, one-letter residue codes are
+#'   overlaid on the residue circles
+#' @param label.col character value for color of labels added if `labels = TRUE`
 #' @export
 #' @examples
 #' draw_wheel("GIGAVLKVLTTGLPALIS")
 #' draw_wheel("QQRKRKIWSILAPLGTTL")
-draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
+draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
+                       labels = FALSE, label.col = "black") {
   # check length of sequence
   MIN.NUM <- 2
   MAX.NUM <- 18
@@ -28,6 +32,14 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
   NUM.COLORS <- 4 # hydrophobic, hydrophilic, basic, acidic
   if (sum(col %in% grDevices::colors()) != NUM.COLORS) {
     stop("ERROR: parameter `col` has invalid, missing, or too many colors.")
+  }
+
+  # make sure labels is a logical value and label.col is valid
+  if (!is.logical(labels)) {
+    stop("labels parameter must be logical (either TRUE or FALSE)")
+  }
+  if (!(label.col %in% grDevices::colors())) {
+    stop("label.col parameter must be a valid color (see list of valid colors using grDevices::colors())")
   }
 
   # hard-code details of 18 circles in helix
@@ -51,6 +63,9 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                        residue_col(curr.resid)
                      })
   circle.data$fill.col <- col[fill.col]
+  circle.data$lettername <- vapply(X = 1:nchar(sequence),
+                                   FUN.VALUE = character(1),
+                                   FUN = function(i) substr(sequence, i, i))
 
   # prepare data frame with segment information
   segment.data <- data.frame(xstart = x.center[1:(num.resid - 1)],
@@ -62,21 +77,30 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
   xstart <- NULL; ystart <- NULL; xend <- NULL; yend <- NULL; x <- NULL; y <- NULL
 
   # draw with ggplot2
-  ggplot2::ggplot() +
-    ggplot2::geom_segment(data = segment.data,
-                          ggplot2::aes(x = xstart, y = ystart,
-                                       xend = xend, yend = yend)) +
-    ggforce::geom_circle(data = circle.data,
-                         ggplot2::aes(x0 = x, y0 = y, r = CIRCLE.RADIUS,
-                                      fill = I(fill.col))) +
-    ggplot2::xlim(c(-1, 1)) + ggplot2::ylim(c(-1, 1)) +
-    ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
-                   panel.grid.minor = ggplot2::element_blank(),
-                   panel.background = ggplot2::element_blank(),
-                   panel.border = ggplot2::element_blank(),
-                   axis.title = ggplot2::element_blank(),
-                   axis.text = ggplot2::element_blank(),
-                   axis.ticks = ggplot2::element_blank(),
-                   legend.position = "none")
+  g <- ggplot2::ggplot() +
+         ggplot2::geom_segment(data = segment.data,
+                               ggplot2::aes(x = xstart, y = ystart,
+                                            xend = xend, yend = yend)) +
+         ggforce::geom_circle(data = circle.data,
+                              ggplot2::aes(x0 = x, y0 = y, r = CIRCLE.RADIUS,
+                                           fill = I(fill.col))) +
+         ggplot2::xlim(c(-1, 1)) + ggplot2::ylim(c(-1, 1)) +
+         ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
+                        panel.grid.minor = ggplot2::element_blank(),
+                        panel.background = ggplot2::element_blank(),
+                        panel.border = ggplot2::element_blank(),
+                        axis.title = ggplot2::element_blank(),
+                        axis.text = ggplot2::element_blank(),
+                        axis.ticks = ggplot2::element_blank(),
+                        legend.position = "none")
+
+  # add labels if user requests (labels = TRUE)
+  if (labels) {
+    g <- g + ggplot2::geom_text(data = circle.data,
+                                ggplot2::aes(x = x, y = y,
+                                             label = lettername,
+                                             colour = I(label.col)))
+  }
+  g
 }
 

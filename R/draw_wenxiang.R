@@ -7,15 +7,13 @@
 #' The residue closest to the center represents the amino acid at the
 #' N-terminus (first in `sequence`).
 #'
-#' @param sequence  character vector containing amino acid sequence
-#'   from N-terminus to C-terminus
-#' @param col colors for each amino acid type in the following order:
-#'   nonpolar residues, polar residues, basic residues, acidic residues
+#' @inheritParams draw_wheel
 #' @export
 #' @examples
 #' draw_wenxiang("GIGAVLKVLTTGLPALIS")
 #' draw_wenxiang("QQRKRKIWSILAPLGTTL")
-draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
+draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red"),
+                          labels = FALSE, label.col = "black") {
   # check length of sequence
   if (nchar(sequence) > 18) {
     stop("ERROR: sequence must have less than or equal to 18 characters.")
@@ -28,6 +26,14 @@ draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
   NUM.COLORS <- 4 # hydrophobic, hydrophilic, basic, acidic
   if (sum(col %in% grDevices::colors()) != NUM.COLORS) {
     stop("ERROR: parameter `col` has invalid, missing, or too many colors.")
+  }
+
+  # make sure labels is a logical value and label.col is valid
+  if (!is.logical(labels)) {
+    stop("labels parameter must be logical (either TRUE or FALSE)")
+  }
+  if (!(label.col %in% grDevices::colors())) {
+    stop("label.col parameter must be a valid color (see list of valid colors using grDevices::colors())")
   }
 
   # prepare data frame for spiral
@@ -71,27 +77,39 @@ draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red")) {
                        residue_col(curr.resid)
                      })
   df.resid$fill.col <- col[fill.col]
+  df.resid$lettername <- vapply(X = 1:nchar(sequence),
+                                FUN.VALUE = character(1),
+                                FUN = function(i) substr(sequence, i, i))
 
   # use to avoid WARNINGs by R CMD check (variables not found)
   x <- NULL; y <- NULL; radius <- NULL
   start.angle <- NULL; end.angle <- NULL; center.x <- NULL; center.y <- NULL
 
   # draw Wenxiang diagram with ggplot2
-  ggplot2::ggplot() +
-    ggforce::geom_arc(data = df.spiral,
-                      ggplot2::aes(x0 = center.x, y0 = center.y,
-                                   r = radius,
-                                   start = start.angle, end = end.angle)) +
-    ggforce::geom_circle(data = df.resid,
-                         ggplot2::aes(x0 = x, y0 = y, r = 0.04,
-                                      fill = I(fill.col))) +
-    ggplot2::xlim(c(0, 1)) + ggplot2::ylim(c(0, 1)) +
-    ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
-                   panel.grid.minor = ggplot2::element_blank(),
-                   panel.background = ggplot2::element_blank(),
-                   panel.border = ggplot2::element_blank(),
-                   axis.title = ggplot2::element_blank(),
-                   axis.text = ggplot2::element_blank(),
-                   axis.ticks = ggplot2::element_blank(),
-                   legend.position = "none")
+  g <- ggplot2::ggplot() +
+         ggforce::geom_arc(data = df.spiral,
+                           ggplot2::aes(x0 = center.x, y0 = center.y,
+                                        r = radius,
+                                        start = start.angle, end = end.angle)) +
+         ggforce::geom_circle(data = df.resid,
+                              ggplot2::aes(x0 = x, y0 = y, r = 0.04,
+                                           fill = I(fill.col))) +
+         ggplot2::xlim(c(0, 1)) + ggplot2::ylim(c(0, 1)) +
+         ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
+                        panel.grid.minor = ggplot2::element_blank(),
+                        panel.background = ggplot2::element_blank(),
+                        panel.border = ggplot2::element_blank(),
+                        axis.title = ggplot2::element_blank(),
+                        axis.text = ggplot2::element_blank(),
+                        axis.ticks = ggplot2::element_blank(),
+                        legend.position = "none")
+
+  # add labels if user requests (labels = TRUE)
+  if (labels) {
+    g <- g + ggplot2::geom_text(data = df.resid,
+                                ggplot2::aes(x = x, y = y,
+                                             label = lettername,
+                                             colour = I(label.col)))
+  }
+  g
 }
