@@ -14,6 +14,7 @@
 #' @param labels logical value; if TRUE, one-letter residue codes are
 #'   overlaid on the residue circles
 #' @param label.col character value for color of labels added if `labels = TRUE`
+#' @importFrom rlang .data
 #' @export
 #' @examples
 #' draw_wheel("GIGAVLKVLTTGLPALIS")
@@ -73,17 +74,15 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
                              xend = x.center[2:num.resid],
                              yend = y.center[2:num.resid])
 
-  # use to avoid WARNINGs by R CMD check (variables not found)
-  xstart <- NULL; ystart <- NULL; xend <- NULL; yend <- NULL; x <- NULL; y <- NULL
-
-  # draw with ggplot2
+  # draw with ggplot2 (use .data from rlang to prevent R CMD check issues)
   g <- ggplot2::ggplot() +
          ggplot2::geom_segment(data = segment.data,
-                               ggplot2::aes(x = xstart, y = ystart,
-                                            xend = xend, yend = yend)) +
+                               ggplot2::aes(x = .data$xstart, y = .data$ystart,
+                                            xend = .data$xend, yend = .data$yend)) +
          ggforce::geom_circle(data = circle.data,
-                              ggplot2::aes(x0 = x, y0 = y, r = CIRCLE.RADIUS,
-                                           fill = I(fill.col))) +
+                              ggplot2::aes(x0 = .data$x, y0 = .data$y,
+                                           r = CIRCLE.RADIUS,
+                                           fill = I(.data$fill.col))) +
          ggplot2::xlim(c(-1, 1)) + ggplot2::ylim(c(-1, 1)) +
          ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
                         panel.grid.minor = ggplot2::element_blank(),
@@ -97,8 +96,8 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
   # add labels if user requests (labels = TRUE)
   if (labels) {
     g <- g + ggplot2::geom_text(data = circle.data,
-                                ggplot2::aes(x = x, y = y,
-                                             label = lettername,
+                                ggplot2::aes(x = .data$x, y = .data$y,
+                                             label = .data$lettername,
                                              colour = I(label.col)))
   }
   g

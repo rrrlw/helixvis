@@ -8,6 +8,7 @@
 #' N-terminus (first in `sequence`).
 #'
 #' @inheritParams draw_wheel
+#' @importFrom rlang .data
 #' @export
 #' @examples
 #' draw_wenxiang("GIGAVLKVLTTGLPALIS")
@@ -81,19 +82,16 @@ draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red"),
                                 FUN.VALUE = character(1),
                                 FUN = function(i) substr(sequence, i, i))
 
-  # use to avoid WARNINGs by R CMD check (variables not found)
-  x <- NULL; y <- NULL; radius <- NULL
-  start.angle <- NULL; end.angle <- NULL; center.x <- NULL; center.y <- NULL
-
-  # draw Wenxiang diagram with ggplot2
+  # draw with ggplot2 (use .data from rlang to prevent R CMD check issues)
   g <- ggplot2::ggplot() +
          ggforce::geom_arc(data = df.spiral,
-                           ggplot2::aes(x0 = center.x, y0 = center.y,
-                                        r = radius,
-                                        start = start.angle, end = end.angle)) +
+                           ggplot2::aes(x0 = .data$center.x, y0 = .data$center.y,
+                                        r = .data$radius,
+                                        start = .data$start.angle,
+                                        end = .data$end.angle)) +
          ggforce::geom_circle(data = df.resid,
-                              ggplot2::aes(x0 = x, y0 = y, r = 0.04,
-                                           fill = I(fill.col))) +
+                              ggplot2::aes(x0 = .data$x, y0 = .data$y,
+                                           r = 0.04, fill = I(.data$fill.col))) +
          ggplot2::xlim(c(0, 1)) + ggplot2::ylim(c(0, 1)) +
          ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
                         panel.grid.minor = ggplot2::element_blank(),
@@ -107,9 +105,9 @@ draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red"),
   # add labels if user requests (labels = TRUE)
   if (labels) {
     g <- g + ggplot2::geom_text(data = df.resid,
-                                ggplot2::aes(x = x, y = y,
-                                             label = lettername,
-                                             colour = I(label.col)))
+                                ggplot2::aes(x = .data$x, y = .data$y,
+                                             label = .data$lettername,
+                                             colour = I(.data$label.col)))
   }
   g
 }
