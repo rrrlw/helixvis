@@ -10,7 +10,8 @@ sequence <- data.frame(Name = c("Polyphemusin-1",
                                "GSQLVYREWVGHSNVIKP",
                                "SGYLPGKEYVYKYKGKVF",
                                "GKLQAFLAKMKEIAAQTL",
-                               "LLGMIPLAISAISALSKL"))
+                               "LLGMIPLAISAISALSKL"),
+                       stringsAsFactors = FALSE)
 
 # add to package
 devtools::use_data(sequence)
