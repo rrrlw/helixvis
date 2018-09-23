@@ -11,3 +11,4 @@ appveyor\.yml
 R/procedure-coords.R
 .Rhistory
 LICENSE
+data-raw
