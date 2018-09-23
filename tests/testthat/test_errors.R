@@ -40,3 +40,14 @@ test_that("Invalid colors are recognized", {
                "ERROR: parameter `col` has invalid, missing, or too many colors.")
 
 })
+
+test_that("Invalid label parameter is recognized", {
+  # test sequence (fat-soluble vitamins)
+  aa.seq <- "ADEK"
+
+  # drawing wheel should throw error (invalid label value)
+  expect_error(draw_wheel(aa.seq, labels = 2))
+
+  # drawing wenxiang should throw error (invalid label value)
+  expect_error(draw_wenxiang(aa.seq, labels = "a"))
+})
