@@ -41,13 +41,19 @@ test_that("Invalid colors are recognized", {
 
 })
 
-test_that("Invalid label parameter is recognized", {
+test_that("Invalid labels and label.col parameters is recognized", {
   # test sequence (fat-soluble vitamins)
   aa.seq <- "ADEK"
 
-  # drawing wheel should throw error (invalid label value)
+  # drawing wheel should throw error (invalid labels value)
   expect_error(draw_wheel(aa.seq, labels = 2))
 
-  # drawing wenxiang should throw error (invalid label value)
+  # drawing wheel should throw error (invalid label.col value, xxx is not a color)
+  expect_error(draw_wheel(aa.seq, labels = TRUE, label.col = "xxx"))
+
+  # drawing wenxiang should throw error (invalid labels value)
   expect_error(draw_wenxiang(aa.seq, labels = "a"))
+
+  # drawing wenxiang should throw error (invalid label.col value, xxx is not a color)
+  expect_error(draw_wenxiang(aa.seq, labels = TRUE, label.col = "xxx"))
 })
