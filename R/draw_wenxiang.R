@@ -107,7 +107,7 @@ draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red"),
     g <- g + ggplot2::geom_text(data = df.resid,
                                 ggplot2::aes(x = .data$x, y = .data$y,
                                              label = .data$lettername,
-                                             colour = I(.data$label.col)))
+                                             colour = I(label.col)))
   }
   g
 }
