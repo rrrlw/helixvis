@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Prelude
 
-The following code loads the helixvis package and the sample data that comes with it - these will be used later on in this vignette.
+The following code loads the helixvis package and the sample data that comes with it - these will be used later in this vignette.
 
 ```{r loadpkg}
 # load helixvis
@@ -67,7 +67,7 @@ draw_wheel(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
 Sometimes, the dimensions of the graphics device being used are not squares, leading to awkward helical wheels (left panel of figure below).
 Since helixvis uses the ggplot2 package to generate wheels, this can be corrected using `ggplot2::coord_fixed` (right panel of figure below).
 
-```{r fixcoord, fig.width = 3, fig.height = 4, fig.show = "hold", fig.cap = "Left: awkward helical wheel due to dimensions of graphics device. Right: corrected helical wheel."}
+```{r fixcoord, fig.width = 3.4, fig.height = 4, fig.show = "hold", fig.cap = "Left: awkward helical wheel due to dimensions of graphics device. Right: corrected helical wheel."}
 # awkward looking wheel due to dimensions of graphical device
 draw_wheel(sequence$Seq[1])
 
@@ -84,7 +84,7 @@ The code used to generate wenxiang diagrams is analogous to that for generation 
 
 The following code blocks and figures reproduce the figures from the Helical Wheel section, redrawn as wenxiang diagrams.
 
-```{r wenxiang, fig.width = 3, fig.height = 3}
+```{r wenxiang, fig.width = 4, fig.height = 4}
 # draw wenxiang diagram
 draw_wenxiang(sequence$Seq[1])
 
@@ -93,7 +93,7 @@ draw_wenxiang(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
            labels = TRUE, label.col = "blue")
 ```
 
-```{r wenxiangcoord, fig.width = 3, fig.height = 4, fig.show = "hold", fig.cap = "Left: awkward wenxiang diagram due to dimensions of graphics device. Right: corrected wenxiang diagram."}
+```{r wenxiangcoord, fig.width = 3.4, fig.height = 4, fig.show = "hold", fig.cap = "Left: awkward wenxiang diagram due to dimensions of graphics device. Right: corrected wenxiang diagram."}
 # awkward looking wheel due to dimensions of graphical device
 draw_wenxiang(sequence$Seq[1])
 
