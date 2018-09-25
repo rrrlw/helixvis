@@ -26,3 +26,4 @@ Suggests: knitr,
     covr,
     testthat
 RoxygenNote: 6.1.0
+VignetteBuilder: knitr
