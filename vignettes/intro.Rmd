@@ -1,0 +1,112 @@
+---
+title: "Introduction to helixvis"
+author: "Raoul R. Wadhwa, Regina Stevens-Truss"
+date: "25 September 2018"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to helixvis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: helixvis.bib
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Prelude
+
+The following code loads the helixvis package and the sample data that comes with it - these will be used later on in this vignette.
+
+```{r loadpkg}
+# load helixvis
+library("helixvis")
+
+# load dataset containing example peptides
+data("sequence")
+```
+
+## Background
+
+The helixvis R package allows users to construct 2-dimensional visualizations of 3-dimensional $\alpha$-helical oligopeptides in a programmatic, reproducible manner.
+Currently, helixvis implements visualization of helical wheels, introduced by @wheeldiag, and wenxiang diagrams, introduced by @wenxiangdiag.
+
+A prototypical $\alpha$-helix has approximately 3.6 residues per turn [@helixorig], implying a 100 degree rotation between consecutive residues.
+After 18 rotations, the 19th residue returns to the same angle as the 1st residue.
+Since helical wheels place all residues at an equal radius away from the center, having the same angle of rotation would cause complete overlap of the 1st and 19th residues.
+As such, helical wheels are limited to plotting 18 residues in a single turn, although some tools do allow for plotting of more than 1 turn [@heliquest].
+For consistency, we also limit wenxiang diagrams
+
+## Helical wheels
+
+Helical wheels provide a bird's eye view of an $\alpha$-helical peptides and are particularly helpful at highlighting prominent hydrophobic faces to explain a large hydrophobic moment [@eisenberg1982; @dathe1997] and design antimicrobial peptides [@chen2005; @jiang2011].
+
+With helixvis, generating helical wheels takes a single line of code, as follows.
+
+```{r wheel, fig.width = 4, fig.height = 4}
+# print sequence that will be drawn
+print(sequence[1, ])
+
+# draw helical wheel
+draw_wheel(sequence$Seq[1])
+```
+
+By default: nonpolar residues (e.g. glycine, tryptophan) will be colored grey; polar residues (e.g. serine, threonine) will be colored yellow; acidic residues with a positive charge (e.g. aspartic acid, glutamic acid) will be colored blue; and basic residues with a negative charge (e.g. lysine, arginine) will be colored red.
+This color scheme can be modified using the `col` parameter, which accepts a character vector with 4 elements, each of which must be an element of `grDevices::colors()`.
+The one-letter code for each residue can also be overlaid on each residue by setting the `labels` parameter to `TRUE`.
+
+```{r wheelcol, fig.width = 4, fig.height = 4}
+# draw helical wheel with custom color scheme
+draw_wheel(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
+           labels = TRUE, label.col = "blue")
+```
+
+Sometimes, the dimensions of the graphics device being used are not squares, leading to awkward helical wheels (left panel of figure below).
+Since helixvis uses the ggplot2 package to generate wheels, this can be corrected using `ggplot2::coord_fixed` (right panel of figure below).
+
+```{r fixcoord, fig.width = 3, fig.height = 4, fig.show = "hold", fig.cap = "Left: awkward helical wheel due to dimensions of graphics device. Right: corrected helical wheel."}
+# awkward looking wheel due to dimensions of graphical device
+draw_wheel(sequence$Seq[1])
+
+# corrected wheel using ggplot2::coord_fixed
+draw_wheel(sequence$Seq[1]) +
+  ggplot2::coord_fixed()
+```
+
+## Wenxiang diagrams
+
+Wenxiang diagrams are quite similar to helical wheels, with the exception that distance from the first residue is represented as a larger radius.
+Thus, wenxiang diagrams visually provide the order of amino acids in the sequence.
+The code used to generate wenxiang diagrams is analogous to that for generation of helical wheels, with the sole difference being that the `draw_wenxiang` function is called instead of `draw_wheel`.
+
+The following code blocks and figures reproduce the figures from the Helical Wheel section, redrawn as wenxiang diagrams.
+
+```{r wenxiang, fig.width = 3, fig.height = 3}
+# draw wenxiang diagram
+draw_wenxiang(sequence$Seq[1])
+
+# draw wenxiang diagram with custom color scheme
+draw_wenxiang(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
+           labels = TRUE, label.col = "blue")
+```
+
+```{r wenxiangcoord, fig.width = 3, fig.height = 4, fig.show = "hold", fig.cap = "Left: awkward wenxiang diagram due to dimensions of graphics device. Right: corrected wenxiang diagram."}
+# awkward looking wheel due to dimensions of graphical device
+draw_wenxiang(sequence$Seq[1])
+
+# corrected wheel using ggplot2::coord_fixed
+draw_wenxiang(sequence$Seq[1]) +
+  ggplot2::coord_fixed()
+```
+
+## Future directions
+
+Current development of helixvis is focused on the following:
+
+* allowing residue circle area to be proportional to biophysical measurements of amino acid size (surface area or volume)
+* implement visualization of helical net diagrams, introduced by @netdiag.
+
+## References
