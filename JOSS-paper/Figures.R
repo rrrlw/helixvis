@@ -11,6 +11,6 @@ left.gg <- draw_wheel("ADEKRLKWGTSRLYYSKG")
 right.gg<- draw_wenxiang("ADEKRLKWGTSRLYYSKG")
 
 # create side-by-side plots using gridExtra
-png("./JOSS-paper/helices.png", width = 700, height = 325)
+png("./JOSS-paper/helices.png", width = 700, height = 350)
 grid.arrange(left.gg, right.gg, ncol = 2)
 dev.off()
