@@ -14,7 +14,7 @@
 #' draw_wenxiang("GIGAVLKVLTTGLPALIS")
 #' draw_wenxiang("QQRKRKIWSILAPLGTTL")
 draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red"),
-                          labels = FALSE, label.col = "black") {
+                          labels = FALSE, label.col = "black", fixed = TRUE) {
   # check length of sequence
   if (nchar(sequence) > 18) {
     stop("ERROR: sequence must have less than or equal to 18 characters.")
@@ -108,6 +108,9 @@ draw_wenxiang <- function(sequence, col = c("grey", "yellow", "blue", "red"),
                                 ggplot2::aes(x = .data$x, y = .data$y,
                                              label = .data$lettername,
                                              colour = I(label.col)))
+  }
+  if (fixed) {
+    g <- g + ggplot2::coord_fixed()
   }
   g
 }

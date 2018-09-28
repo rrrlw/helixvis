@@ -14,13 +14,15 @@
 #' @param labels logical value; if TRUE, one-letter residue codes are
 #'   overlaid on the residue circles
 #' @param label.col character value for color of labels added if `labels = TRUE`
+#' @param fixed if TRUE (default), ensures that residues will be circles
+#'   (not ellipses) even if graphics device is rectangular
 #' @importFrom rlang .data
 #' @export
 #' @examples
 #' draw_wheel("GIGAVLKVLTTGLPALIS")
 #' draw_wheel("QQRKRKIWSILAPLGTTL")
 draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
-                       labels = FALSE, label.col = "black") {
+                       labels = FALSE, label.col = "black", fixed = TRUE) {
   # check length of sequence
   MIN.NUM <- 2
   MAX.NUM <- 18
@@ -99,6 +101,9 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
                                 ggplot2::aes(x = .data$x, y = .data$y,
                                              label = .data$lettername,
                                              colour = I(label.col)))
+  }
+  if (fixed) {
+    g <- g + ggplot2::coord_fixed()
   }
   g
 }
