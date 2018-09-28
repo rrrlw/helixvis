@@ -10,14 +10,17 @@
   \item{Seq}{antimicrobial residue sequence}
 }}
 \source{
-\url{http://www.camp.bicnirrh.res.in/}
+\url{http://aps.unmc.edu/AP/}
 }
 \usage{
 sequence
 }
 \description{
 A dataset containing the name and residue sequence of
-five antimicrobial peptides from the Collection of
-Anti-Microbial Peptide (CAMP) database.
+five antimicrobial peptides from the Antimicrobial
+Peptide Database (APD3).
+}
+\details{
+See Wang et al. (2016) <doi:10.1093/nar/gkv1278> for more information.
 }
 \keyword{datasets}

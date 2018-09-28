@@ -1,16 +1,16 @@
-# save a data frame containing 5 AMP names and sequences from
-#   the Collection of Anti-Microbial Peptides database
-#   URL: http://www.camp.bicnirrh.res.in/index.php
-sequence <- data.frame(Name = c("Polyphemusin-1",
-                                "Lariatin A",
-                                "Longipin",
-                                "Lycocitin-1",
-                                "Phylloseptin-L1"),
-                       Seq = c("RRWCFRVCYRGFCYRKCR",
-                               "GSQLVYREWVGHSNVIKP",
-                               "SGYLPGKEYVYKYKGKVF",
-                               "GKLQAFLAKMKEIAAQTL",
-                               "LLGMIPLAISAISALSKL"),
+# save a data frame containing 4 AMP names and sequences from
+#   the Antimicrobial Peptide Database (APD3)
+#   URL: http://aps.unmc.edu/AP/main.php
+sequence <- data.frame(Name = c("Aurein 2.2",
+                                "Cecropin A-Magainin 2 Hybrid",
+                                "Uperin 3.5",
+                                "Citropin 1.1",
+                                "CPF-ST3"),
+                       Seq = c("GLFDIVKKVVGALGSL",
+                               "KWKLFKKIKFLHSAKKF",
+                               "GVGDLIRKAVSVIKNIV",
+                               "GLFDVIKKVASVIGGL",
+                               "GLLGPLLKIAAKVGSNLL"),
                        stringsAsFactors = FALSE)
 
 # add to package
