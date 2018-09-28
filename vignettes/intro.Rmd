@@ -1,7 +1,9 @@
 ---
 title: "Introduction to helixvis"
-author: "Raoul R. Wadhwa, Regina Stevens-Truss"
-date: "25 September 2018"
+author: |
+  | Raoul R. Wadhwa, Regina Stevens-Truss
+  | Department of Chemistry, Kalamazoo College
+date: "27 September 2018"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to helixvis}
@@ -48,10 +50,10 @@ With helixvis, generating helical wheels takes a single line of code, as follows
 
 ```{r wheel, fig.width = 4, fig.height = 4}
 # print sequence that will be drawn
-print(sequence[1, ])
+print(sequence[5, ])
 
 # draw helical wheel
-draw_wheel(sequence$Seq[1])
+draw_wheel(sequence$Seq[5])
 ```
 
 By default: nonpolar residues (e.g. glycine, tryptophan) will be colored grey; polar residues (e.g. serine, threonine) will be colored yellow; acidic residues with a positive charge (e.g. aspartic acid, glutamic acid) will be colored blue; and basic residues with a negative charge (e.g. lysine, arginine) will be colored red.
@@ -60,7 +62,7 @@ The one-letter code for each residue can also be overlaid on each residue by set
 
 ```{r wheelcol, fig.width = 4, fig.height = 4}
 # draw helical wheel with custom color scheme
-draw_wheel(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
+draw_wheel(sequence$Seq[5], col = c("pink", "orange", "white", "black"),
            labels = TRUE, label.col = "blue")
 ```
 
@@ -74,10 +76,10 @@ The following code blocks and figures reproduce the figures from the Helical Whe
 
 ```{r wenxiang, fig.width = 4, fig.height = 4}
 # draw wenxiang diagram
-draw_wenxiang(sequence$Seq[1])
+draw_wenxiang(sequence$Seq[5])
 
 # draw wenxiang diagram with custom color scheme
-draw_wenxiang(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
+draw_wenxiang(sequence$Seq[5], col = c("pink", "orange", "white", "black"),
            labels = TRUE, label.col = "blue")
 ```
 
