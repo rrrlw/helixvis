@@ -27,6 +27,14 @@ bibliography: paper.bib
 # Summary
 
 - First paragraph describes use of 2-dimensional visualizations of alpha-helical peptides and introduces helical wheels and wenxiang diagrams (cite @wheeldiag, @wenxiangdiag)
+
+Studying the interactions of short peptides is conceptually non-trivial, even when the peptide's primary and secondary structures are known.
+The difficulty is often a result of the spatial complexity inherent in an $\alpha$-helix, a commonly observed form of protein secondary structure.
+Identification of hydrophobic faces formed by secondary structure is a common challenge that can be solved using projections of amino acids on a two-dimensional surface.
+
+Brian Grey
+
+
 - Second paragraph gives reader high-level purpose of helixvis
 - Third paragraph describes current and future applications of helixvis in scientific research and education (cite @apd, @camp, @amp-design)
 
@@ -34,6 +42,6 @@ bibliography: paper.bib
 
 # Acknowledgments
 
-Raoul R. Wadhwa and Regina Stevens-Truss thank the Fred & Elaine Hutchinson Fund and the F.W. & Elsie Heyl Science Scholarship Fund for research funding, and the Kalamazoo College Department of Chemistry for research support.
+Raoul R. Wadhwa and Regina Stevens-Truss thank the Fred & Elaine Hutchinson Fund and the F.W. & Elsie Heyl Science Scholarship Fund for research funding, and the Kalamazoo College Department of Chemistry for support.
 
 # References
