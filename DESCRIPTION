@@ -1,29 +1,27 @@
 Package: helixvis
 Type: Package
 Title: Visualize Alpha-Helical Peptide Sequences
-Version: 0.9.6
+Version: 0.9.9
 Authors@R: c(
   person("Raoul", "Wadhwa", email = "raoulwadhwa@gmail.com", role = c("cre", "aut")),
   person("Regina", "Stevens-Truss", email = "rtruss@kzoo.edu", role = "aut"),
-  person("Vigneshwar", "Subramanian", email = "vs347@cornell.edu", role = "aut"))
-Description: Create pretty visualizations of alpha-helical
-    peptide sequences in R. The amino acid type (polar, hydrophobic, etc.) is
-    denoted by color. This package allows creation of helical wheels and
-    wenxiang diagrams. Future versions aim to include increased
-    customization of the two existing visualizations, as well as a
-    visualization for the helical net diagram.
+  person("Vigneshwar", "Subramanian", email = "vs347@cornell.edu", role = "ctb"))
+Description: Create publication-quality, 2-dimensional visualizations of alpha-helical peptide
+  sequences. Specifically, helixvis allows the user to programmatically generate
+  helical wheels and wenxiang diagrams to provide a bird's eye, top-down view of
+  alpha-helical oligopeptides.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 2.10)
 Imports: ggplot2 (>= 3.0.0),
-    ggforce (>= 0.1.3),
-    rlang (>= 0.2.2)
+  ggforce (>= 0.1.3),
+  rlang (>= 0.2.2)
 URL: https://github.com/rrrlw/helixvis
 BugReports: https://github.com/rrrlw/helixvis/issues
 Suggests: knitr,
-    rmarkdown,
-    covr,
-    testthat
+  rmarkdown,
+  covr,
+  testthat
 RoxygenNote: 6.1.0
 VignetteBuilder: knitr
