@@ -1,9 +1,8 @@
 ---
 title: 'Visualizing alpha-helical peptides in R with helixvis'
 tags:
-  - 'peptide'
+  - 'antimicrobial peptide'
   - 'alpha helix'
-  - 'biochemistry'
   - 'wenxiang diagram'
   - 'helical wheel'
   - 'visualization'
@@ -20,28 +19,39 @@ affiliations:
     index: '1'
   - name: 'Cleveland Clinic Lerner College of Medicine, Case Western Reserve University, Cleveland, OH 44195, USA'
     index: '2'
-date: 27 September 2018
+date: 5 October 2018
 bibliography: paper.bib
 ---
 
 # Summary
 
-- First paragraph describes use of 2-dimensional visualizations of alpha-helical peptides and introduces helical wheels and wenxiang diagrams (cite @wheeldiag, @wenxiangdiag)
-
 Studying the interactions of short peptides is conceptually non-trivial, even when the peptide's primary and secondary structures are known.
-The difficulty is often a result of the spatial complexity inherent in an $\alpha$-helix, a commonly observed form of protein secondary structure.
-Identification of hydrophobic faces formed by secondary structure is a common challenge that can be solved using projections of amino acids on a two-dimensional surface.
+The difficulty is often a result of the three-dimensional spatial complexity present in protein secondary structure.
+Here, we focus on $\alpha$-helical secondary structure.
+Two-dimensional visualizations, specifically helical wheels (Figure 1, left panel) and wenxiang diagrams (Figure 1, right panel), are used by biochemists to study $\alpha$-helices.
+Helical wheels provide a bird's eye view of a helical peptide with the amino acids forming a perfect circle, and allow for rapid identification of the peptide's hydrophobic faces [@wheeldiag], helping solve a common challenge in biochemistry research.
+In contrast, wenxiang diagrams incorporate residue order by making residue distance from the center directly proportional to residue position in the peptide [@wenxiangdiag].
+However, this makes the identification of hydrophobic faces less intuitive.
+Together, these two forms of visualization allow researchers to more clearly understand the underlying structure of $\alpha$-helical peptides.
 
-Brian Grey
+The helixvis R package allows researchers to programmatically create helical wheels and wenxiang diagrams for short, $\alpha$-helical peptides (Figure 1).
+Although there exist several web tools that do the same, there is currently no package on the Comprehensive R Archive Network (CRAN) to implement this functionality in R.
+Additionally, programmatic creation and design of graphics allows for greater customization with fewer restrictions than tools that interact with users via a grpahical interface.
+By allowing programmatic customization and design of helical wheels and wenxiang diagrams, helixvis reduces the number of manual steps required to create these visualizations to essentially zero.
+Thus, helixvis facilitates reproducibility, a critical component of computational research [@reproducible].
 
+Researchers can apply helixvis to help answer a multitude of scientific questions.
+In particular, helical wheels and wenxiang diagrams have been heavily used in the design of antimicrobial peptides.
+There currently exist carefully curated databases listing sequences for thousands of antimicrobial peptides [@apd; @camp].
+An important research goal in this area is the design of synthetic antimicrobial peptides, and the presence of strongly hydrophobic faces is known to play a role in the toxicity of $\alpha$-helical antimicrobial peptides.
+The helixvis package allows researchers to rapidly and reproducibly produce helical wheels and wenxiang diagrams for known and potential antimicrobial peptide sequences, thus facilitating the design of new antimicrobial peptides.
+The senior author of this paper is using helixvis for the aforementioned purpose in current research projects.
+A Python version of helixvis is also currently under production [@py-helixvis].
 
-- Second paragraph gives reader high-level purpose of helixvis
-- Third paragraph describes current and future applications of helixvis in scientific research and education (cite @apd, @camp, @amp-design)
-
-![*Two-dimensional visualizations of an alpha-helical oligopeptide.* Left: helical wheel, particularly useful for identifying hydrophobic faces formed by secondary structure. Right: wenxiang diagram, visually incorporates amino acid order lost in helical wheels at the cost of a less intuitive visualization.](helices.png)
+![**Two-dimensional visualizations of an alpha-helical oligopeptide.** Left: helical wheel, particularly useful for identifying hydrophobic faces formed by secondary structure. Right: wenxiang diagram, visually incorporates amino acid order lost in helical wheels at the cost of a less intuitive visualization.](helices.png)
 
 # Acknowledgments
 
-Raoul R. Wadhwa and Regina Stevens-Truss thank the Fred & Elaine Hutchinson Fund and the F.W. & Elsie Heyl Science Scholarship Fund for research funding, and the Kalamazoo College Department of Chemistry for support.
+Raoul R. Wadhwa and Regina Stevens-Truss thank the Alan & Elaine Hutchcroft Fund and the F.W. & Elsie Heyl Science Scholarship Fund for research funding, and the Kalamazoo College Department of Chemistry for support.
 
 # References
