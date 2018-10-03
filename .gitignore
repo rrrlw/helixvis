@@ -1,10 +1,10 @@
-.DS_Store
-*.Rproj
-.Rproj.user
-.Rhistory
+\.DS_Store
+*\.Rproj
+\.Rproj\.user
+\.Rhistory
 
 # used to come up with coordinates for circle locations in Wenxiang diagrams
-R/procedure-coords.R
+R/procedure-coords\.R
 
 # ignore reference files for testing
 tests/testthat/wheel-*
@@ -12,5 +12,5 @@ tests/testthat/wenxiang-*
 inst/doc
 
 # ignore local vignette builds for JOSS-paper
-JOSS-paper/*.html
-JOSS-paper/*.pdf
+JOSS-paper/*\.html
+JOSS-paper/*\.pdf
