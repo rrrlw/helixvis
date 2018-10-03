@@ -33,6 +33,7 @@ Helical wheels provide a bird's eye view of a helical peptide with the amino aci
 In contrast, wenxiang diagrams incorporate residue order by making residue distance from the center directly proportional to residue position in the peptide [@wenxiangdiag].
 However, this makes the identification of hydrophobic faces less intuitive.
 Together, these two forms of visualization allow researchers to more clearly understand the underlying structure of $\alpha$-helical peptides.
+Given the existence of databases listing thousands of peptides, all of which might potentially need to be visualized for inspection, there is a need for software that allows for rapid programmatic construction of large numbers of publication-quality helical wheels and wenxiang diagrams.
 
 The helixvis R package allows researchers to programmatically create helical wheels and wenxiang diagrams for short, $\alpha$-helical peptides (Figure 1).
 Although there exist several web tools that do the same, there is currently no package on the Comprehensive R Archive Network (CRAN) to implement this functionality in R.
