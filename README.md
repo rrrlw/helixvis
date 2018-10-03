@@ -10,17 +10,15 @@
 
 ## Purpose
 
-helixvis can be used to create pretty, publication-quality, 2-dimensional visualizations of alpha-helical peptide sequences.
-Specifically, this package allows the user to programmatically generate helical wheels to provide a bird's eye, top-down view of a short, alpha-helical peptide.
-Although tools exist to complete this task (e.g. HeliQuest), they generally provide a user interface for manual input of peptide sequences, without allowing for programmatic creation of helical visualizations.
+helixvis can be used to create publication-quality, 2-dimensional visualizations of alpha-helical peptide sequences.
+Specifically, this package allows the user to programmatically generate helical wheels and wenxiang diagrams to provide a bird's eye, top-down view of alpha-helical oligopeptides.
+Although other tools exist to complete this task, they generally provide a graphical user interface for manual input of peptide sequences, without allowing for programmatic creation and customization of visualizations.
 Programmatic generation of helical wheels in open source R provides multiple benefits, including:
 
-* quick and easy incorporation of wheels into R markdown documents
+* quick and easy incorporation of wheels into Rmarkdown documents
 * rapid generation of many peptides (e.g. all the elements of a peptide database) without manual steps
-* reproducibility
-
-The helixvis package implements the popular helical wheel and wenxiang diagram visualizations.
-Please report any bugs, suggestions, etc. on the [issues page](https://github.com/rrrlw/helixvis/issues) of the [helixvis GitHub repository](https://github.com/rrrlw/helixvis).
+* programmatic customization of visualizations using ggplot2
+* reproducibility: practically zero manual steps required for design and creation of helical wheels and wenxiang diagrams
 
 ## Installation
 
@@ -41,21 +39,32 @@ library("helixvis")
 
 ## Usage
 
-The following code demonstrates the use of helixvis to create a helical wheel for the first 18 residues of melittin, a potent antimicrobial peptide found in bee venom.
+The following code demonstrates the use of helixvis to using sample data included in the package (development version only).
+
 
 ```r
 # load helixvis
 library("helixvis")
 
-# create helical wheel (18 residue limit)
-draw_wheel("GIGAVLKVLTTGLPALIS")
+# load sample dataset
+data("sequence")
 
-# save visualization in working directory
-ggplot2::ggsave("MelittinWheel.png")
+# visualize helical wheel from first peptide in sample data
+draw_wheel(sequence$Seq[1])
 
-# create wenxiang diagram (18 residue limit)
-draw_wenxiang("GIGAVLKVLTTGLPALIS")
+# save to workspace
+ggplot2::ggsave(paste(sequence$Name[1], ".png", sep = ""),
+                width = 6, height = 6)
 
-# save visualization in working directory
-ggplot2::ggsave("MelittinWenxiang.png")
+# visualize wenxiang diagram from second peptide in sample data
+draw_wenxiang(sequence$Seq[2])
+
+# save to workspace
+ggplot2::ggsave(paste(sequence$Name[2], ".png", sep = ""),
+                width = 6, height = 6)
 ```
+
+## Contributions
+
+Please report any bugs, suggestions, etc. on the [issues page](https://github.com/rrrlw/helixvis/issues) of the [helixvis GitHub repository](https://github.com/rrrlw/helixvis).
+Contributions (bug fixes, new features, etc.) are welcome via pull requests (generally from forked repositories).
