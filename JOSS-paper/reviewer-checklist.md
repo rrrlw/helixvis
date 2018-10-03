@@ -4,12 +4,12 @@
 	- a list of authors of the software: *provided*
 	- author affiliations: *provided*
 	- a summary describing high-level functionality and purpose of the software for a diverse, non-specialist audience: *provided*
-	- a clear statement of need that illustrates the purpose of the software:
+	- a clear statement of need that illustrates the purpose of the software: *last sentence of first paragraph in JOSS submission*
 	- mentions of any ongoing research projects using the software: *provided*
 	- a list of key references including a link to the software archive:
 * Software license: *GPL-3 provided in LICENSE file*
 * Documentation
-	- statement of need: *last sentence of first paragraph in JOSS submission*
+	- statement of need: 
 	- installation instructions: *provided in DESCRIPTION file*
 	- example usage: *included in vignette and README file*
 	- API documentation: *all user-accessible functions are documented*
