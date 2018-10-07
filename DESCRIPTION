@@ -5,7 +5,7 @@ Version: 0.9.9
 Authors@R: c(
   person("Raoul", "Wadhwa", email = "raoulwadhwa@gmail.com", role = c("cre", "aut")),
   person("Regina", "Stevens-Truss", email = "rtruss@kzoo.edu", role = "aut"),
-  person("Vigneshwar", "Subramanian", email = "vs347@cornell.edu", role = "ctb"))
+  person("Vigneshwar", "Subramanian", email = "vs347@cornell.edu", role = "aut"))
 Description: Create publication-quality, 2-dimensional visualizations of alpha-helical peptide
   sequences. Specifically, helixvis allows the user to programmatically generate
   helical wheels and wenxiang diagrams to provide a bird's eye, top-down view of
