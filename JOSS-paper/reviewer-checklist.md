@@ -17,6 +17,6 @@
 * Tests: *automated testing implemented (100% coverage) with continuous integration using Travis CI and AppVeyor*
 * Authorship
 	- Raoul R Wadhwa: *contributed to code for R package and paper writing, submitting author*
-	- Vigneshwar Subramanian: *contributed to code for Python package*
+	- Vigneshwar Subramanian: *contributed to code for Python package and software design*
 	- Regina Stevens-Truss: *contributed to design of features implemented in R package and paper writing, senior author*
-* Novel software: *no known R package implements visualization functionality provided in helixvis*
+* Novel software: *no known R package implements visualization provided in helixvis*
