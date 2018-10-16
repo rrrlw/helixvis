@@ -47,7 +47,7 @@ There currently exist carefully curated databases listing sequences for thousand
 An important research goal in this area is the design of synthetic antimicrobial peptides, and the presence of strongly hydrophobic faces is known to play a role in the toxicity of $\alpha$-helical antimicrobial peptides.
 The helixvis package allows researchers to rapidly and reproducibly produce helical wheels and wenxiang diagrams for known and potential antimicrobial peptide sequences, thus facilitating the design of new antimicrobial peptides.
 The senior author of this paper is using helixvis for the aforementioned purpose in current research projects.
-A Python version of helixvis is also currently under production [@py-helixvis].
+The code for helixvis can be found at its GitHub repository [@r-helixvis]; a Python version of helixvis is also currently under production [@py-helixvis].
 
 ![**Two-dimensional visualizations of an alpha-helical oligopeptide.** Left: helical wheel, particularly useful for identifying hydrophobic faces formed by secondary structure. Right: wenxiang diagram, visually incorporates amino acid order lost in helical wheels at the cost of a less intuitive visualization.](helices.png)
 
