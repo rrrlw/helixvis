@@ -1,6 +1,6 @@
 \.DS_Store
 *\.Rproj
-\.Rproj\.user
+.Rproj.user
 \.Rhistory
 
 # used to come up with coordinates for circle locations in Wenxiang diagrams
@@ -12,6 +12,7 @@ tests/testthat/wenxiang-*
 inst/doc
 *\.png
 
-# ignore local vignette builds for JOSS-paper
+# ignore local vignette builds for JOSS-paper and writing draft stuff
 JOSS-paper/*\.html
 JOSS-paper/*\.pdf
+JOSS-paper/*\.docx
