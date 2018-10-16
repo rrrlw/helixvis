@@ -3,7 +3,7 @@ title: "Introduction to helixvis"
 author: |
   | Raoul R. Wadhwa, Regina Stevens-Truss
   | Department of Chemistry, Kalamazoo College
-date: "4 October 2018"
+date: "16 October 2018"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to helixvis}
@@ -36,11 +36,11 @@ data("sequence")
 The helixvis R package allows users to construct 2-dimensional visualizations of 3-dimensional $\alpha$-helical oligopeptides in a programmatic, reproducible manner.
 Currently, helixvis implements visualization of helical wheels, introduced by @wheeldiag, and wenxiang diagrams, introduced by @wenxiangdiag.
 
-A prototypical $\alpha$-helix has approximately 3.6 residues per turn [@helixorig], implying a 100 degree rotation between consecutive residues.
+A prototypical $\alpha$-helix has approximately 3.6 residues per turn [@helixorig], implying a 100$^\text{o}$ rotation between consecutive residues.
 After 18 rotations, the 19th residue returns to the same angle as the 1st residue.
 Since helical wheels place all residues at an equal radius away from the center, having the same angle of rotation would cause complete overlap of the 1st and 19th residues.
 As such, helical wheels are limited to plotting 18 residues in a single turn, although some tools do allow for plotting of more than 1 turn [@heliquest].
-For consistency, we also limit wenxiang diagrams
+For consistency, we also limit wenxiang diagrams to 18 residues.
 
 ## Helical wheels
 
@@ -56,7 +56,7 @@ print(sequence[1, ])
 draw_wheel(sequence$Seq[1])
 ```
 
-By default: nonpolar residues (e.g. glycine, tryptophan) will be colored grey; polar residues (e.g. serine, threonine) will be colored yellow; acidic residues with a positive charge (e.g. aspartic acid, glutamic acid) will be colored blue; and basic residues with a negative charge (e.g. lysine, arginine) will be colored red.
+By default: nonpolar residues (e.g. glycine, tryptophan) will be colored grey; polar residues (e.g. serine, threonine) will be colored yellow; acidic residues with a negative charge at physiologic pH (e.g. aspartic acid, glutamic acid) will be colored red; and basic residues with a positive charge at physiologic pH (e.g. lysine, arginine) will be colored blue.
 This color scheme can be modified using the `col` parameter, which accepts a character vector with 4 elements, each of which must be an element of `grDevices::colors()`.
 The one-letter code for each residue can also be overlaid on each residue by setting the `labels` parameter to `TRUE`.
 
@@ -68,9 +68,9 @@ draw_wheel(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
 
 ## Wenxiang diagrams
 
-Wenxiang diagrams are quite similar to helical wheels, with the exception that distance from the first residue is represented as a larger radius.
+Wenxiang diagrams are quite similar to helical wheels, with the exception that distance from the first residue is denoted by distance from the center of the spiral.
 Thus, wenxiang diagrams visually provide the order of amino acids in the sequence.
-The code used to generate wenxiang diagrams is analogous to that for generation of helical wheels, with the sole difference being that the `draw_wenxiang` function is called instead of `draw_wheel`.
+The code used to generate wenxiang diagrams is analogous to that for generation of helical wheels.
 
 The following code blocks and figures reproduce the figures from the Helical Wheel section, redrawn as wenxiang diagrams.
 
