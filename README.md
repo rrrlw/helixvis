@@ -31,7 +31,7 @@ The following R code can be used to install and load helixvis.
 install.packages("helixvis")
 
 # install development version from GitHub repository
-devtools::install_github("rrrlw/helixvis")
+devtools::install_github("rrrlw/helixvis", build_vignettes = TRUE)
 
 # load for use
 library("helixvis")
