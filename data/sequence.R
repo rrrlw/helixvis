@@ -12,6 +12,3 @@ sequence <- data.frame(Name = c("Aurein 2.2",
                                "GLFDVIKKVASVIGGL",
                                "GLLGPLLKIAAKVGSNLL"),
                        stringsAsFactors = FALSE)
-
-# add to package
-devtools::use_data(sequence)
