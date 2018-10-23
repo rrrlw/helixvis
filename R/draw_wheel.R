@@ -16,13 +16,15 @@
 #' @param label.col character value for color of labels added if `labels = TRUE`
 #' @param fixed if TRUE (default), ensures that residues will be circles
 #'   (not ellipses) even if graphics device is rectangular
+#' @param legend if TRUE, adds legend to plot
 #' @importFrom rlang .data
 #' @export
 #' @examples
 #' draw_wheel("GIGAVLKVLTTGLPALIS")
 #' draw_wheel("QQRKRKIWSILAPLGTTL")
 draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
-                       labels = FALSE, label.col = "black", fixed = TRUE) {
+                       labels = FALSE, label.col = "black", fixed = TRUE,
+                       legend = FALSE) {
   # check length of sequence
   MIN.NUM <- 2
   MAX.NUM <- 18
@@ -65,7 +67,8 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
                      FUN = function(curr.resid) {
                        residue_col(curr.resid)
                      })
-  circle.data$fill.col <- col[fill.col]
+  resid.types <- c("hydrophobic", "polar", "basic", "acidic")
+  circle.data$fill.col <- resid.types[fill.col]
   circle.data$lettername <- vapply(X = 1:nchar(sequence),
                                    FUN.VALUE = character(1),
                                    FUN = function(i) substr(sequence, i, i))
@@ -84,8 +87,13 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
          ggforce::geom_circle(data = circle.data,
                               ggplot2::aes(x0 = .data$x, y0 = .data$y,
                                            r = CIRCLE.RADIUS,
-                                           fill = I(.data$fill.col))) +
+                                           fill = .data$fill.col)) +
          ggplot2::xlim(c(-1, 1)) + ggplot2::ylim(c(-1, 1)) +
+         ggplot2::scale_fill_manual(values = c("hydrophobic" = col[1],
+                                               "polar" = col[2],
+                                               "basic" = col[3],
+                                               "acidic" = col[4]),
+                                    name = "Residue Types") +
          ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
                         panel.grid.minor = ggplot2::element_blank(),
                         panel.background = ggplot2::element_blank(),
@@ -102,9 +110,17 @@ draw_wheel <- function(sequence, col = c("grey", "yellow", "blue", "red"),
                                              label = .data$lettername,
                                              colour = I(label.col)))
   }
+  
+  # fixed coordinates if user desires
   if (fixed) {
     g <- g + ggplot2::coord_fixed()
   }
+  
+  # legend if user desires
+  if (legend) {
+    g <- g + ggplot2::theme(legend.position = "right")
+  }
+  
   g
 }
 
