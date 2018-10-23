@@ -5,7 +5,8 @@
 \title{Create Wenxiang diagrams to visualize alpha helical sequences.}
 \usage{
 draw_wenxiang(sequence, col = c("grey", "yellow", "blue", "red"),
-  labels = FALSE, label.col = "black", fixed = TRUE)
+  labels = FALSE, label.col = "black", fixed = TRUE,
+  legend = FALSE)
 }
 \arguments{
 \item{sequence}{character vector containing amino acid sequence
@@ -21,6 +22,8 @@ overlaid on the residue circles}
 
 \item{fixed}{if TRUE (default), ensures that residues will be circles
 (not ellipses) even if graphics device is rectangular}
+
+\item{legend}{if TRUE, adds legend to plot}
 }
 \description{
 This function visualizes alpha-helical peptides as
