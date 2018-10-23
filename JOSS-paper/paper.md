@@ -37,7 +37,7 @@ Given the existence of databases listing thousands of peptides, all of which mig
 
 The helixvis R package allows researchers to programmatically create helical wheels and wenxiang diagrams for short, $\alpha$-helical peptides (Figure 1).
 Although there exist several web tools that do the same, there is currently no package on the Comprehensive R Archive Network (CRAN) to implement this functionality in R.
-Additionally, programmatic creation and design of graphics allows for greater customization with fewer restrictions than tools that interact with users via a grpahical interface.
+Additionally, programmatic creation and design of graphics allows for greater customization with fewer restrictions than tools that interact with users via a graphical interface.
 By allowing programmatic customization and design of helical wheels and wenxiang diagrams, helixvis reduces the number of manual steps required to create these visualizations to essentially zero.
 Thus, helixvis facilitates reproducibility, a critical component of computational research [@reproducible].
 
