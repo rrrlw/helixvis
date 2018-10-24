@@ -20,4 +20,10 @@ test_that("helical wheel produces valid ggplot object", {
 
   # make sure ggplot object is returned
   expect_true("ggplot" %in% class(temp.wheel))
+  
+  # check with legend
+  temp.wheel <- draw_wheel(temp.seq, legend = TRUE)
+  
+  # make sure ggplot2 still works
+  expect_true("ggplot" %in% class(temp.wheel))
 })

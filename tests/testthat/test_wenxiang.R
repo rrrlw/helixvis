@@ -20,4 +20,10 @@ test_that("wenxiang diagram produces valid ggplot object", {
 
   # make sure ggplot object is returned
   expect_true("ggplot" %in% class(temp.wenxiang))
+  
+  # check with legend
+  temp.wenxiang <- draw_wenxiang(temp.seq, legend = TRUE)
+  
+  # make sure ggplot2 still works
+  expect_true("ggplot" %in% class(temp.wenxiang))
 })
