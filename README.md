@@ -8,6 +8,8 @@
 [![CRAN version](http://www.r-pkg.org/badges/version/helixvis)](https://CRAN.R-project.org/package=helixvis)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/helixvis)](https://CRAN.R-project.org/package=helixvis)
 
+[![DOI](https://zenodo.org/badge/134013329.svg)](https://zenodo.org/badge/latestdoi/134013329)
+
 ## Purpose
 
 helixvis can be used to create publication-quality, 2-dimensional visualizations of alpha-helical peptide sequences.
