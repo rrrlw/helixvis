@@ -1,7 +1,7 @@
 Package: helixvis
 Type: Package
 Title: Visualize Alpha-Helical Peptide Sequences
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
   person("Raoul", "Wadhwa", email = "raoulwadhwa@gmail.com", role = c("cre", "aut")),
   person("Regina", "Stevens-Truss", email = "rtruss@kzoo.edu", role = "aut"),
