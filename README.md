@@ -8,7 +8,8 @@
 [![CRAN version](http://www.r-pkg.org/badges/version/helixvis)](https://CRAN.R-project.org/package=helixvis)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/helixvis)](https://CRAN.R-project.org/package=helixvis)
 
-[![DOI](https://zenodo.org/badge/134013329.svg)](https://zenodo.org/badge/latestdoi/134013329)
+[![JOSS DOI](https://joss.theoj.org/papers/10.21105/joss.01008/status.svg)](https://doi.org/10.21105/joss.01008)
+[![Zenodo DOI](https://zenodo.org/badge/134013329.svg)](https://zenodo.org/badge/latestdoi/134013329)
 
 ## Purpose
 
