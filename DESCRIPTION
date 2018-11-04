@@ -9,7 +9,8 @@ Authors@R: c(
 Description: Create publication-quality, 2-dimensional visualizations of alpha-helical peptide
   sequences. Specifically, helixvis allows the user to programmatically generate
   helical wheels and wenxiang diagrams to provide a bird's eye, top-down view of
-  alpha-helical oligopeptides.
+  alpha-helical oligopeptides. See Wadhwa RR, et al. (2018)
+  <doi:10.21105/joss.01008> for more information.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
