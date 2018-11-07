@@ -1,0 +1,17 @@
+citHeader("To cite helixvis in publications use:")
+
+citEntry(entry = "Article",
+  title = "Visualizing alpha-helical peptides in R with helixvis",
+  author = "Raoul R. Wadhwa and Vigneshwar Subramanian and Regina Stevens-Truss",
+  journal = "Journal of Open Source Software",
+  year = "2018",
+  volume = "3",
+  number = "31",
+  pages = "1008",
+  url = "https://doi.org/10.21105/joss.01008",
+  doi = "10.21105/joss.01008",
+  textVersion = paste("Wadhwa RR, Subramanian V, Stevens-Truss R (2018).",
+    "Visualizing alpha-helical peptides in R with helixvis.",
+    "Journal of Open Source Software, 3(31): 1008.",
+    "doi:10.21105/joss.01008")
+)
