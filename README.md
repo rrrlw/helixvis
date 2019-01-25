@@ -1,4 +1,4 @@
-# helixvis: Visualize alpha-helical peptide sequences in R
+# helixvis: Visualize alpha-helical peptide sequences
 
 [![Travis Build Status](https://travis-ci.org/rrrlw/helixvis.svg?branch=master)](https://travis-ci.org/rrrlw/helixvis)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rrrlw/helixvis?branch=master&svg=true)](https://ci.appveyor.com/project/rrrlw/helixvis)
