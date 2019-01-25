@@ -81,7 +81,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Introduction to helixvis</h1>
-                        <h4 class="author"><div class="line-block">Raoul R. Wadhwa, Regina Stevens-Truss<br>
+                        <h4 class="author"><div style="white-space: pre-line;">Raoul R. Wadhwa, Regina Stevens-Truss
 Department of Chemistry, Kalamazoo College</div></h4>
             
             <h4 class="date">16 October 2018</h4>
@@ -97,11 +97,11 @@ Department of Chemistry, Kalamazoo College</div></h4>
 <h2 class="hasAnchor">
 <a href="#prelude" class="anchor"></a>Prelude</h2>
 <p>The following code loads the helixvis package and the sample data that comes with it - these will be used later in this vignette.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># load helixvis</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"helixvis"</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># load dataset containing example peptides</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"sequence"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load helixvis</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"helixvis"</span>)
+
+<span class="co"># load dataset containing example peptides</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"sample_seq"</span>)</code></pre></div>
 </div>
 <div id="background" class="section level2">
 <h2 class="hasAnchor">
@@ -114,18 +114,18 @@ Department of Chemistry, Kalamazoo College</div></h4>
 <a href="#helical-wheels" class="anchor"></a>Helical wheels</h2>
 <p>Helical wheels provide a bird’s eye view of an <span class="math inline">\(\alpha\)</span>-helical peptides and are particularly helpful at highlighting prominent hydrophobic faces to explain a large hydrophobic moment <span class="citation">(Eisenberg, Weiss, and Terwilliger 1982; Dathe et al. 1997)</span> and design antimicrobial peptides <span class="citation">(Chen et al. 2005; Jiang et al. 2011)</span>.</p>
 <p>With helixvis, generating helical wheels takes a single line of code, as follows.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># print sequence that will be drawn</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(sequence[<span class="dv">1</span>, ])</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt;             Name                Seq</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; 1 Polyphemusin-1 RRWCFRVCYRGFCYRKCR</span></a>
-<a class="sourceLine" id="cb2-5" title="5"></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co"># draw helical wheel</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="kw"><a href="../reference/draw_wheel.html">draw_wheel</a></span>(sequence<span class="op">$</span>Seq[<span class="dv">1</span>])</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print sequence that will be drawn</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(sample_seq[<span class="dv">1</span>, ])
+<span class="co">#&gt;         Name              Seq</span>
+<span class="co">#&gt; 1 Aurein 2.2 GLFDIVKKVVGALGSL</span>
+
+<span class="co"># draw helical wheel</span>
+<span class="kw"><a href="../reference/draw_wheel.html">draw_wheel</a></span>(sample_seq<span class="op">$</span>Seq[<span class="dv">1</span>])</code></pre></div>
 <p><img src="intro_files/figure-html/wheel-1.png" width="384"></p>
 <p>By default: nonpolar residues (e.g. glycine, tryptophan) will be colored grey; polar residues (e.g. serine, threonine) will be colored yellow; acidic residues with a negative charge at physiologic pH (e.g. aspartic acid, glutamic acid) will be colored red; and basic residues with a positive charge at physiologic pH (e.g. lysine, arginine) will be colored blue. This color scheme can be modified using the <code>col</code> parameter, which accepts a character vector with 4 elements, each of which must be an element of <code><a href="https://www.rdocumentation.org/packages/grDevices/topics/colors">grDevices::colors()</a></code>. The one-letter code for each residue can also be overlaid on each residue by setting the <code>labels</code> parameter to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># draw helical wheel with custom color scheme</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/draw_wheel.html">draw_wheel</a></span>(sequence<span class="op">$</span>Seq[<span class="dv">1</span>], <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"pink"</span>, <span class="st">"orange"</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),</a>
-<a class="sourceLine" id="cb3-3" title="3">           <span class="dt">labels =</span> <span class="ot">TRUE</span>, <span class="dt">label.col =</span> <span class="st">"blue"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># draw helical wheel with custom color scheme</span>
+<span class="kw"><a href="../reference/draw_wheel.html">draw_wheel</a></span>(sample_seq<span class="op">$</span>Seq[<span class="dv">1</span>], <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"pink"</span>, <span class="st">"orange"</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),
+           <span class="dt">labels =</span> <span class="ot">TRUE</span>, <span class="dt">label.col =</span> <span class="st">"blue"</span>)</code></pre></div>
 <p><img src="intro_files/figure-html/wheelcol-1.png" width="384"></p>
 </div>
 <div id="wenxiang-diagrams" class="section level2">
@@ -133,13 +133,13 @@ Department of Chemistry, Kalamazoo College</div></h4>
 <a href="#wenxiang-diagrams" class="anchor"></a>Wenxiang diagrams</h2>
 <p>Wenxiang diagrams are quite similar to helical wheels, with the exception that distance from the first residue is denoted by distance from the center of the spiral. Thus, wenxiang diagrams visually provide the order of amino acids in the sequence. The code used to generate wenxiang diagrams is analogous to that for generation of helical wheels.</p>
 <p>The following code blocks and figures reproduce the figures from the Helical Wheel section, redrawn as wenxiang diagrams.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># draw wenxiang diagram</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="../reference/draw_wenxiang.html">draw_wenxiang</a></span>(sequence<span class="op">$</span>Seq[<span class="dv">1</span>])</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># draw wenxiang diagram</span>
+<span class="kw"><a href="../reference/draw_wenxiang.html">draw_wenxiang</a></span>(sample_seq<span class="op">$</span>Seq[<span class="dv">1</span>])</code></pre></div>
 <p><img src="intro_files/figure-html/wenxiang-1.png" width="384"></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co"># draw wenxiang diagram with custom color scheme</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw"><a href="../reference/draw_wenxiang.html">draw_wenxiang</a></span>(sequence<span class="op">$</span>Seq[<span class="dv">1</span>], <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"pink"</span>, <span class="st">"orange"</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),</a>
-<a class="sourceLine" id="cb5-4" title="4">           <span class="dt">labels =</span> <span class="ot">TRUE</span>, <span class="dt">label.col =</span> <span class="st">"blue"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># draw wenxiang diagram with custom color scheme</span>
+<span class="kw"><a href="../reference/draw_wenxiang.html">draw_wenxiang</a></span>(sample_seq<span class="op">$</span>Seq[<span class="dv">1</span>], <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"pink"</span>, <span class="st">"orange"</span>, <span class="st">"white"</span>, <span class="st">"black"</span>),
+           <span class="dt">labels =</span> <span class="ot">TRUE</span>, <span class="dt">label.col =</span> <span class="st">"blue"</span>)</code></pre></div>
 <p><img src="intro_files/figure-html/wenxiang-2.png" width="384"></p>
 </div>
 <div id="future-directions" class="section level2">
@@ -156,31 +156,31 @@ Department of Chemistry, Kalamazoo College</div></h4>
 <a href="#references" class="anchor"></a>References</h2>
 <div id="refs" class="references">
 <div id="ref-chen2005">
-<p>Chen, Y, C T Mant, S W Farmer, R E W Hancock, M L Vasil, and R S Hodges. 2005. “Rational Design of Alpha-Helical Antimicrobial Peptides with Enhanced Activities and Specificity/Therapeutic Index.” <em>J Biol Chem</em> 280 (13): 12316–29. <a href="https://doi.org/10.1074/jbc.M413406200">https://doi.org/10.1074/jbc.M413406200</a>.</p>
+<p>Chen, Y, C T Mant, S W Farmer, R E W Hancock, M L Vasil, and R S Hodges. 2005. “Rational Design of Alpha-Helical Antimicrobial Peptides with Enhanced Activities and Specificity/Therapeutic Index.” <em>J Biol Chem</em> 280 (13): 12316–29. doi:<a href="https://doi.org/10.1074/jbc.M413406200">10.1074/jbc.M413406200</a>.</p>
 </div>
 <div id="ref-wenxiangdiag">
-<p>Chou, K C, C T Zhang, and G M Maggiora. 1997. “Disposition of Amphiphilic Helices in Heteropolar Environments.” <em>Proteins</em> 28 (1): 99–108. <a href="https://doi.org/10.1002/(SICI)1097-0134(199705)28:1&lt;99::AID-PROT10&gt;3.0.CO;2-C">https://doi.org/10.1002/(SICI)1097-0134(199705)28:1&lt;99::AID-PROT10&gt;3.0.CO;2-C</a>.</p>
+<p>Chou, K C, C T Zhang, and G M Maggiora. 1997. “Disposition of Amphiphilic Helices in Heteropolar Environments.” <em>Proteins</em> 28 (1): 99–108. doi:<a href="https://doi.org/10.1002/(SICI)1097-0134(199705)28:1&lt;99::AID-PROT10&gt;3.0.CO;2-C">10.1002/(SICI)1097-0134(199705)28:1&lt;99::AID-PROT10&gt;3.0.CO;2-C</a>.</p>
 </div>
 <div id="ref-dathe1997">
-<p>Dathe, M, T Wieprecht, H Nikolenko, L Handel, W L Maloy, D L MacDonald, M Beyermann, and M Bienert. 1997. “Hydrophobicity, Hydrophobic Moment and Angle Subtended by Charged Residues Modulate Antibacterial and Haemolytic Activity of Amphipathic Helical Peptides.” <em>FEBS Lett</em> 403 (2): 208–12. <a href="https://doi.org/10.1016/S0014-5793(97)00055-0">https://doi.org/10.1016/S0014-5793(97)00055-0</a>.</p>
+<p>Dathe, M, T Wieprecht, H Nikolenko, L Handel, W L Maloy, D L MacDonald, M Beyermann, and M Bienert. 1997. “Hydrophobicity, Hydrophobic Moment and Angle Subtended by Charged Residues Modulate Antibacterial and Haemolytic Activity of Amphipathic Helical Peptides.” <em>FEBS Lett</em> 403 (2): 208–12. doi:<a href="https://doi.org/10.1016/S0014-5793(97)00055-0">10.1016/S0014-5793(97)00055-0</a>.</p>
 </div>
 <div id="ref-netdiag">
-<p>Dunnill, P. 1968. “The Use of Helical Net-Diagrams to Represent Protein Structures.” <em>Biophys J</em> 8 (7): 865–75. <a href="https://doi.org/10.1016/S0006-3495(68)86525-7">https://doi.org/10.1016/S0006-3495(68)86525-7</a>.</p>
+<p>Dunnill, P. 1968. “The Use of Helical Net-Diagrams to Represent Protein Structures.” <em>Biophys J</em> 8 (7): 865–75. doi:<a href="https://doi.org/10.1016/S0006-3495(68)86525-7">10.1016/S0006-3495(68)86525-7</a>.</p>
 </div>
 <div id="ref-eisenberg1982">
 <p>Eisenberg, D, R M Weiss, and T C Terwilliger. 1982. “The Helical Hydrophobic Moment: A Measure of the Amphiphilicity of a Helix.” <em>Nature</em> 299: 371–74.</p>
 </div>
 <div id="ref-heliquest">
-<p>Gautier, R, D Douguet, B Antonny, and G Drin. 2008. “HELIQUEST: A Web Server to Screen Sequences with Specific Alpha-Helical Properties.” <em>Bioinformatics</em> 24 (18): 2101–2. <a href="https://doi.org/10.1093/bioinformatics/btn392">https://doi.org/10.1093/bioinformatics/btn392</a>.</p>
+<p>Gautier, R, D Douguet, B Antonny, and G Drin. 2008. “HELIQUEST: A Web Server to Screen Sequences with Specific Alpha-Helical Properties.” <em>Bioinformatics</em> 24 (18): 2101–2. doi:<a href="https://doi.org/10.1093/bioinformatics/btn392">10.1093/bioinformatics/btn392</a>.</p>
 </div>
 <div id="ref-jiang2011">
-<p>Jiang, Z, A I Vasil, L Gera, M L Vasil, and R S Hodges. 2011. “Rational Design of Alpha-Helical Antimicrobial Peptides to Target Gram-Negative Pathogens, Acenitobacter Baumannii and Pseudomonas Aeruginosa: Utilization of Charge, Specificity Determinants, Total Hydrophobicity, Hydrophobe Type and Location as Design Parameters to Improve the Therapeutic Ratio.” <em>Chem Biol Drug Des</em> 77 (4): 225–40. <a href="https://doi.org/10.1111/j.1747-0285.2011.01086.x">https://doi.org/10.1111/j.1747-0285.2011.01086.x</a>.</p>
+<p>Jiang, Z, A I Vasil, L Gera, M L Vasil, and R S Hodges. 2011. “Rational Design of Alpha-Helical Antimicrobial Peptides to Target Gram-Negative Pathogens, Acenitobacter Baumannii and Pseudomonas Aeruginosa: Utilization of Charge, Specificity Determinants, Total Hydrophobicity, Hydrophobe Type and Location as Design Parameters to Improve the Therapeutic Ratio.” <em>Chem Biol Drug Des</em> 77 (4): 225–40. doi:<a href="https://doi.org/10.1111/j.1747-0285.2011.01086.x">10.1111/j.1747-0285.2011.01086.x</a>.</p>
 </div>
 <div id="ref-helixorig">
-<p>Pauling, L, R B Corey, and H R Branson. 1951. “The Structure of Proteins: Two Hydrogen-Bonded Helical Configurations of the Polypeptide Chain.” <em>Proc Natl Acad Sci USA</em> 37 (4): 205–11. <a href="https://doi.org/10.1073/pnas.37.4.205">https://doi.org/10.1073/pnas.37.4.205</a>.</p>
+<p>Pauling, L, R B Corey, and H R Branson. 1951. “The Structure of Proteins: Two Hydrogen-Bonded Helical Configurations of the Polypeptide Chain.” <em>Proc Natl Acad Sci USA</em> 37 (4): 205–11. doi:<a href="https://doi.org/10.1073/pnas.37.4.205">10.1073/pnas.37.4.205</a>.</p>
 </div>
 <div id="ref-wheeldiag">
-<p>Schiffer, M, and A B Edmundson. 1967. “Use of Helical Wheels to Represent the Structures of Proteins and to Identify Segments with Helical Potential.” <em>Biophys J</em> 7 (2): 121–35. <a href="https://doi.org/10.1016/S0006-3495(67)86579-2">https://doi.org/10.1016/S0006-3495(67)86579-2</a>.</p>
+<p>Schiffer, M, and A B Edmundson. 1967. “Use of Helical Wheels to Represent the Structures of Proteins and to Identify Segments with Helical Potential.” <em>Biophys J</em> 7 (2): 121–35. doi:<a href="https://doi.org/10.1016/S0006-3495(67)86579-2">10.1016/S0006-3495(67)86579-2</a>.</p>
 </div>
 </div>
 </div>
