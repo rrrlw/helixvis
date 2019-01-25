@@ -13,7 +13,7 @@
 
 ## Purpose
 
-helixvis can be used to create publication-quality, 2-dimensional visualizations of alpha-helical peptide sequences.
+Built by the lab of [Regina Stevens-Truss, PhD](https://reason.kzoo.edu/chem/faculty/regina/) (Professor & Chair, Department of Chemistry, Kalamazoo College), helixvis can be used to create publication-quality, 2-dimensional visualizations of alpha-helical peptide sequences.
 Specifically, this package allows the user to programmatically generate helical wheels and wenxiang diagrams to provide a bird's eye, top-down view of alpha-helical oligopeptides.
 Although other tools exist to complete this task, they generally provide a graphical user interface for manual input of peptide sequences, without allowing for programmatic creation and customization of visualizations.
 Programmatic generation of helical wheels in open source R provides multiple benefits, including:
