@@ -10,7 +10,6 @@ R/procedure-coords\.R
 tests/testthat/wheel-*
 tests/testthat/wenxiang-*
 inst/doc
-*\.png
 
 # ignore local vignette builds for JOSS-paper and writing draft stuff
 JOSS-paper/*\.html
