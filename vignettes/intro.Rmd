@@ -28,7 +28,7 @@ The following code loads the helixvis package and the sample data that comes wit
 library("helixvis")
 
 # load dataset containing example peptides
-data("sequence")
+data("sample_seq")
 ```
 
 ## Background
@@ -50,10 +50,10 @@ With helixvis, generating helical wheels takes a single line of code, as follows
 
 ```{r wheel, fig.width = 4, fig.height = 4}
 # print sequence that will be drawn
-print(sequence[1, ])
+print(sample_seq[1, ])
 
 # draw helical wheel
-draw_wheel(sequence$Seq[1])
+draw_wheel(sample_seq$Seq[1])
 ```
 
 By default: nonpolar residues (e.g. glycine, tryptophan) will be colored grey; polar residues (e.g. serine, threonine) will be colored yellow; acidic residues with a negative charge at physiologic pH (e.g. aspartic acid, glutamic acid) will be colored red; and basic residues with a positive charge at physiologic pH (e.g. lysine, arginine) will be colored blue.
@@ -62,7 +62,7 @@ The one-letter code for each residue can also be overlaid on each residue by set
 
 ```{r wheelcol, fig.width = 4, fig.height = 4}
 # draw helical wheel with custom color scheme
-draw_wheel(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
+draw_wheel(sample_seq$Seq[1], col = c("pink", "orange", "white", "black"),
            labels = TRUE, label.col = "blue")
 ```
 
@@ -76,10 +76,10 @@ The following code blocks and figures reproduce the figures from the Helical Whe
 
 ```{r wenxiang, fig.width = 4, fig.height = 4}
 # draw wenxiang diagram
-draw_wenxiang(sequence$Seq[1])
+draw_wenxiang(sample_seq$Seq[1])
 
 # draw wenxiang diagram with custom color scheme
-draw_wenxiang(sequence$Seq[1], col = c("pink", "orange", "white", "black"),
+draw_wenxiang(sample_seq$Seq[1], col = c("pink", "orange", "white", "black"),
            labels = TRUE, label.col = "blue")
 ```
 
