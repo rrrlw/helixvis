@@ -12,4 +12,4 @@
 #'   \item{Seq}{antimicrobial residue sequence}
 #' }
 #' @source \url{http://aps.unmc.edu/AP/}
-"sequence"
+"sample_seq"
